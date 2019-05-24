@@ -70,7 +70,7 @@ namespace TrackMatic.SalesTaxes
                 case Type.Local:
                     return Amount + (Amount * 0.1);
                 case Type.Import:
-                    return Amount + (Amount * 0.05);
+                    return Amount + (Amount * 0.1) + (Amount * 0.05);
                 case Type.Exempt:
                     return Amount;
                 default:
@@ -120,16 +120,9 @@ namespace TrackMatic.SalesTaxes
         {
             //Console.WriteLine("Print the receipt.");
             //Console.WriteLine("=========================.");
-            Console.WriteLine("{0,-10} " +
-            	"{1,-10}: " +
-            	"R{2,-10} " +
-            	"Rate: {3,-7} " +
-            	"Taxed R{4,-7} ",
-                Type,
-                Name,
-                Amount,
-                this.GetTaxRate(),
-                this.GetSalesTaxes());
+            Console.WriteLine("{0,-6} {1,-20}:  R{2,-6} " , Type, Name, Amount);
+                //this.GetTaxRate(),
+                //this.GetSalesTaxes());
         }
 
 
