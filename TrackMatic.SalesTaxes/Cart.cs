@@ -52,6 +52,7 @@ namespace TrackMatic.SalesTaxes
             throw new ArgumentOutOfRangeException();
         }
 
+
         public void TotalSales()
         {
             if (Amount < 0)
@@ -62,14 +63,14 @@ namespace TrackMatic.SalesTaxes
         }
 
 
-        public double TotalTaxes()
+        public double GetSalesTaxes()
         {
             switch (Type)
             {
                 case Type.Local:
-                    return Amount * 0.10;
+                    return Amount + (Amount * 0.1);
                 case Type.Import:
-                    return Amount * 0.05;
+                    return Amount + (Amount * 0.05);
                 case Type.Exempt:
                     return Amount;
                 default:
@@ -113,6 +114,22 @@ namespace TrackMatic.SalesTaxes
 
         public void Dispose()
         {
+        }
+
+        public void PrintItem()
+        {
+            //Console.WriteLine("Print the receipt.");
+            //Console.WriteLine("=========================.");
+            Console.WriteLine("{0,-10} " +
+            	"{1,-10}: " +
+            	"R{2,-10} " +
+            	"Rate: {3,-7} " +
+            	"Taxed R{4,-7} ",
+                Type,
+                Name,
+                Amount,
+                this.GetTaxRate(),
+                this.GetSalesTaxes());
         }
 
 
